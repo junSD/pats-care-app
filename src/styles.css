@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+input.ng-touched.ng-invalid{
+  border-color: red;
+}
+input.ng-touched.ng-valid{
+  border-color: #55ff61;
+}
+.text-error {
+  color: #813a23;
+  text-align: left;
+  font-size: 12px;
+}
+mat-dialog-container {
+  position: fixed;
+  left: calc(50% - 400px/2);
+  top: 3%;
+  width: 400px !important;
+  background-color: white;
+  z-index: 100000;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(14, 14, 14, 0.98);
+}
+.mat-dialog-container {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.mat-dialog-container > * {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-dialog-content {
+  max-height: inherit !important;
+}

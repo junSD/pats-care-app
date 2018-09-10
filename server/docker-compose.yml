@@ -1,0 +1,37 @@
+version: "3.6"
+services:
+  elephantbackend:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    depends_on:
+      - elephantdb
+    env_file:
+      - ./env/.env
+    environment:
+      DB_HOST: elephantdb
+    ports:
+      - 3000:3000
+    networks:
+      - elphantnet
+    command: ["./entrypoint.sh", "./wait-for-postgres.sh", "elephantdb"]
+  elephantdb:
+    container_name: "elephantdb"
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_DATABASE}
+#      PG_DATA: ./pgdata
+    volumes:
+#      - ./pgdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "${DB_PORT}:5432"
+    networks:
+      - elphantnet
+networks:
+  elphantnet:
+    driver: "bridge"
+#volumes:
+#  dumps: {}

@@ -1,0 +1,11 @@
+<div class="wrapper-block">
+  <h2 mat-dialog-title>Добрый день</h2>
+  <mat-dialog-content>
+    <p *ngIf="isLogged">
+      Вы {{useremail}} успешно вошли в систему
+    </p>
+    <p *ngIf="!isLogged">
+      Пользователь с таким {{useremail}} не существует либо неправильный пароль
+    </p>
+  </mat-dialog-content>
+</div>
